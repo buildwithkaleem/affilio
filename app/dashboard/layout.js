@@ -9,7 +9,7 @@ export default function DashboardLayout({ children }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    //  {/* <ProtectedRoute> */}
+      <ProtectedRoute> 
       <div className="min-h-screen bg-muted/30">
         <div className="flex min-h-screen">
           <Sidebar
@@ -26,6 +26,6 @@ export default function DashboardLayout({ children }) {
           </div>
         </div>
       </div>
-    // {/* </ProtectedRoute> */}
+     </ProtectedRoute>
   );
 }

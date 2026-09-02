@@ -79,6 +79,9 @@ export default function AuthInitializer({ children }) {
     let mounted = true;
 
     const initializeAuth = async () => {
+
+      console.log("AUTH INITIALIZER START");
+
       try {
         const response =
           await refreshAccessToken();
