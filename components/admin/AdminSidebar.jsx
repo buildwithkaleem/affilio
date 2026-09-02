@@ -46,7 +46,7 @@ const menuItems = [
     icon: ArrowDownToLine,
   },
   {
-    name: "Contact Messages",
+    title: "Contact Messages",
     href: "/admin/contact",
     icon: Mail,
   }
