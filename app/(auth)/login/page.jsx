@@ -63,7 +63,13 @@ export default function LoginPage() {
 
       dispatch(loginSuccess(response.data));
 
-      router.push("/dashboard");
+      // router.push("/dashboard");
+
+      if (user?.role?.toLowerCase() === "admin") {
+        router.replace("/admin");
+      } else {
+        router.replace("/dashboard");
+      }
 
     } catch (error) {
       dispatch(
