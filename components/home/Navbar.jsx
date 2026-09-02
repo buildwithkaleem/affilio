@@ -25,14 +25,14 @@ export default function Navbar() {
           </Link>
 
           <Link
-            href="#features"
+            href="/#features"
             className="text-sm font-medium text-muted-foreground transition hover:text-foreground"
           >
             Features
           </Link>
 
           <Link
-            href="#about"
+            href="/#about"
             className="text-sm font-medium text-muted-foreground transition hover:text-foreground"
           >
             About
@@ -65,11 +65,11 @@ export default function Navbar() {
               Home
             </Link>
 
-            <Link href="#features" onClick={() => setOpen(false)}>
+            <Link href="/#features" onClick={() => setOpen(false)}>
               Features
             </Link>
 
-            <Link href="#about" onClick={() => setOpen(false)}>
+            <Link href="/#about" onClick={() => setOpen(false)}>
               About
             </Link>
 

@@ -15,6 +15,7 @@ import {
   ArrowDownToLine,
   LogOut,
   ShieldCheck,
+  Mail,
   X,
 } from "lucide-react";
 
@@ -44,6 +45,11 @@ const menuItems = [
     href: "/admin/withdrawals",
     icon: ArrowDownToLine,
   },
+  {
+    name: "Contact Messages",
+    href: "/admin/contact",
+    icon: Mail,
+  }
 ];
 
 export default function AdminSidebar({
