@@ -31,7 +31,7 @@ export default function AdminLayout({
     useState(false);
 
   return (
-    <ProtectedRoute adminOnly>
+    // <ProtectedRoute adminOnly>
       <AdminInitializer>
 
 
@@ -74,6 +74,6 @@ export default function AdminLayout({
 
         </div>
       </AdminInitializer>
-    </ProtectedRoute>
+    // </ProtectedRoute>
   );
 }
