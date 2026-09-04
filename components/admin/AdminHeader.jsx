@@ -968,7 +968,8 @@ export default function AdminHeader({
                     (notification) => (
                       <Link
                         key={notification._id}
-                        href={`/admin/notifications/${notification._id}`}
+                        href={notification.type === "contact" ?
+                          `/admin/contact/${contact._id}` : `/admin/notifications/${notification._id}`}
                         onClick={() =>
                           handleNotificationClick(
                             notification
