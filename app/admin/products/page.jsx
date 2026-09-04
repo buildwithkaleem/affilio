@@ -362,7 +362,7 @@ export default function AdminProductsPage() {
 
                         <div className="flex items-center gap-3">
 
-                          {product.salePrice ? (
+                          {product.salePrice == 0 ? (
                             <>
                               <span className="font-bold">
                                 Rs.{" "}
