@@ -197,7 +197,7 @@ export default function ProductsPage() {
 
                   <div className="flex items-center gap-2">
 
-                    {product.salePrice == 0 && (
+                    {/* {product.salePrice == 0 && (
                       <span className="text-lg font-bold">
                         Rs.{" "}
                         {Number(
@@ -215,7 +215,36 @@ export default function ProductsPage() {
                             product.regularPrice
                           ).toLocaleString()}
                         </span>
-                      )}
+                      )} */}
+
+                    {product.salePrice != 0 ? (
+                      <>
+                        <span className="font-bold">
+                          Rs.{" "}
+                          {Number(
+                            product.salePrice
+                          ).toLocaleString()}
+                        </span>
+
+                        {product.regularPrice && (
+                          <span className="text-sm text-muted-foreground line-through">
+                            Rs.{" "}
+                            {Number(
+                              product.regularPrice
+                            ).toLocaleString()}
+                          </span>
+                        )}
+                      </>
+                    ) : (
+                      <span className="font-bold">
+                        Rs.{" "}
+                        {Number(
+                          product.regularPrice ||
+                          0
+                        ).toLocaleString()}
+                      </span>
+                    )}
+
 
                   </div>
 
