@@ -197,7 +197,7 @@ export default function ProductsPage() {
 
                   <div className="flex items-center gap-2">
 
-                    {product.salePrice && (
+                    {product.salePrice == 0 && (
                       <span className="text-lg font-bold">
                         Rs.{" "}
                         {Number(
