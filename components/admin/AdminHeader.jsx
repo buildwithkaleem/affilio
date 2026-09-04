@@ -969,7 +969,7 @@ export default function AdminHeader({
                       <Link
                         key={notification._id}
                         href={notification.type === "contact" ?
-                          `/admin/contact/${contact._id}` : `/admin/notifications/${notification._id}`}
+                          `/admin/contact/${notification.referenceId}` : `/admin/notifications/${notification._id}`}
                         onClick={() =>
                           handleNotificationClick(
                             notification
@@ -987,7 +987,7 @@ export default function AdminHeader({
                           {/* ICON */}
 
                           <div
-                            className={`flex h - 9 w - 9 shrink - 0 items - center justify - center rounded - lg ${
+                            className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg ${
   notification.isRead
     ? "bg-muted text-muted-foreground"
     : "bg-primary/10 text-primary"
