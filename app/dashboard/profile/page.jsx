@@ -108,7 +108,7 @@ export default function ProfilePage() {
     setError("");
     setSuccess("");
 
-    if (!form.oldPassword) {
+    if (form.newPassword && !form.oldPassword) {
       setError(
         "Old password is required."
       );
