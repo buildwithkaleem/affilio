@@ -1533,8 +1533,471 @@
 
 
 // v3
+// "use client";
+
+// import { motion } from "motion/react";
+
+// import {
+//   Users,
+//   UserCheck,
+//   UserX,
+//   ShieldCheck,
+//   Trash2,
+//   Loader2,
+//   Mail,
+// } from "lucide-react";
+
+// import {
+//   Card,
+//   CardContent,
+//   CardHeader,
+//   CardTitle,
+// } from "@/components/ui/card";
+
+// import { Button } from "@/components/ui/button";
+
+// import { useAdminUsers } from "@/hooks/admin/useAdminUsers";
+
+// export default function AdminUsersPage() {
+//   // =========================
+//   // ADMIN USERS HOOK
+//   // =========================
+
+//   const {
+//     users = [],
+//     loading,
+//     error,
+//     deletingId,
+//     deleteUser,
+//   } = useAdminUsers();
+
+//   // =========================
+//   // DELETE USER
+//   // =========================
+
+//   const handleDelete = async (userId) => {
+//     const confirmed = window.confirm(
+//       "Are you sure you want to delete this user?"
+//     );
+
+//     if (!confirmed) return;
+
+//     try {
+//       await deleteUser(userId);
+//     } catch (error) {
+//       console.error(
+//         "Delete user error:",
+//         error
+//       );
+//     }
+//   };
+
+//   // =========================
+//   // STATS
+//   // =========================
+
+//   const totalUsers = users.length;
+
+//   const adminUsers = users.filter(
+//     (user) => user.role === "admin"
+//   ).length;
+
+//   const normalUsers = users.filter(
+//     (user) => user.role !== "admin"
+//   ).length;
+
+//   // =========================
+//   // RENDER
+//   // =========================
+
+//   return (
+//     <div className="space-y-6">
+
+//       {/* =========================
+//           HEADER
+//       ========================= */}
+
+//       <motion.div
+//         initial={{
+//           opacity: 0,
+//           y: -10,
+//         }}
+//         animate={{
+//           opacity: 1,
+//           y: 0,
+//         }}
+//       >
+//         <h1 className="text-3xl font-bold tracking-tight">
+//           Users
+//         </h1>
+
+//         <p className="mt-2 text-muted-foreground">
+//           Manage all users registered on your platform.
+//         </p>
+//       </motion.div>
+
+//       {/* =========================
+//           ERROR
+//       ========================= */}
+
+//       {error && (
+//         <motion.div
+//           initial={{
+//             opacity: 0,
+//           }}
+//           animate={{
+//             opacity: 1,
+//           }}
+//           className="rounded-lg border border-destructive/30 bg-destructive/10 p-4 text-sm text-destructive"
+//         >
+//           {error}
+//         </motion.div>
+//       )}
+
+//       {/* =========================
+//           STATS
+//       ========================= */}
+
+//       <div className="grid gap-4 sm:grid-cols-3">
+
+//         <StatCard
+//           title="Total Users"
+//           value={totalUsers}
+//           icon={Users}
+//         />
+
+//         <StatCard
+//           title="Users"
+//           value={normalUsers}
+//           icon={UserCheck}
+//         />
+
+//         <StatCard
+//           title="Admins"
+//           value={adminUsers}
+//           icon={ShieldCheck}
+//         />
+
+//       </div>
+
+//       {/* =========================
+//           USERS TABLE
+//       ========================= */}
+
+//       <motion.div
+//         initial={{
+//           opacity: 0,
+//           y: 15,
+//         }}
+//         animate={{
+//           opacity: 1,
+//           y: 0,
+//         }}
+//       >
+//         <Card>
+
+//           <CardHeader>
+//             <div className="flex items-center gap-2">
+
+//               <Users className="h-5 w-5" />
+
+//               <CardTitle>
+//                 All Users
+//               </CardTitle>
+
+//             </div>
+//           </CardHeader>
+
+//           <CardContent>
+
+//             {/* =========================
+//                 LOADING
+//             ========================= */}
+
+//             {loading ? (
+//               <div className="flex min-h-48 items-center justify-center">
+
+//                 <Loader2 className="h-6 w-6 animate-spin" />
+
+//               </div>
+//             ) : users.length === 0 ? (
+
+//               /* =========================
+//                  EMPTY
+//               ========================= */
+
+//               <div className="flex min-h-48 flex-col items-center justify-center gap-3 text-muted-foreground">
+
+//                 <UserX className="h-10 w-10 opacity-40" />
+
+//                 <p className="text-sm">
+//                   No users found.
+//                 </p>
+
+//               </div>
+
+//             ) : (
+
+//               /* =========================
+//                  TABLE
+//               ========================= */
+
+//               <div className="overflow-x-auto">
+
+//                 <table className="w-full min-w-[700px]">
+
+//                   <thead>
+//                     <tr className="border-b">
+
+//                       <th className="px-4 py-3 text-left text-sm font-medium text-muted-foreground">
+//                         User
+//                       </th>
+
+//                       <th className="px-4 py-3 text-left text-sm font-medium text-muted-foreground">
+//                         Email
+//                       </th>
+
+//                       <th className="px-4 py-3 text-left text-sm font-medium text-muted-foreground">
+//                         Role
+//                       </th>
+
+//                       <th className="px-4 py-3 text-left text-sm font-medium text-muted-foreground">
+//                         Balance
+//                       </th>
+
+//                       <th className="px-4 py-3 text-right text-sm font-medium text-muted-foreground">
+//                         Action
+//                       </th>
+
+//                     </tr>
+//                   </thead>
+
+//                   <tbody>
+
+//                     {users.map(
+//                       (user, index) => {
+
+//                         const isDeleting =
+//                           deletingId === user._id;
+
+//                         return (
+//                           <motion.tr
+//                             key={user._id}
+//                             initial={{
+//                               opacity: 0,
+//                               y: 5,
+//                             }}
+//                             animate={{
+//                               opacity: 1,
+//                               y: 0,
+//                             }}
+//                             transition={{
+//                               delay:
+//                                 index * 0.03,
+//                             }}
+//                             className="border-b last:border-0"
+//                           >
+
+//                             {/* USER */}
+
+//                             <td className="px-4 py-4">
+
+//                               <div className="flex items-center gap-3">
+
+//                                 <div className="flex h-10 w-10 items-center justify-center rounded-full bg-muted">
+
+//                                   <Users className="h-5 w-5" />
+
+//                                 </div>
+
+//                                 <div>
+
+//                                   <p className="font-medium">
+//                                     {user.userName ||
+//                                       "Unknown User"}
+//                                   </p>
+
+//                                   <p className="max-w-[180px] truncate text-xs text-muted-foreground">
+//                                     ID:{" "}
+//                                     {user._id}
+//                                   </p>
+
+//                                 </div>
+
+//                               </div>
+
+//                             </td>
+
+//                             {/* EMAIL */}
+
+//                             <td className="px-4 py-4">
+
+//                               <div className="flex items-center gap-2 text-sm">
+
+//                                 <Mail className="h-4 w-4 shrink-0 text-muted-foreground" />
+
+//                                 <span className="max-w-[220px] truncate">
+//                                   {user.email ||
+//                                     "No email"}
+//                                 </span>
+
+//                               </div>
+
+//                             </td>
+
+//                             {/* ROLE */}
+
+//                             <td className="px-4 py-4">
+
+//                               {user.role ===
+//                                 "admin" ? (
+//                                 <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
+
+//                                   <ShieldCheck className="h-3.5 w-3.5" />
+
+//                                   Admin
+
+//                                 </span>
+//                               ) : (
+//                                 <span className="inline-flex items-center gap-1.5 rounded-full bg-muted px-3 py-1 text-xs font-medium">
+
+//                                   <UserCheck className="h-3.5 w-3.5" />
+
+//                                   User
+
+//                                 </span>
+//                               )}
+
+//                             </td>
+
+//                             {/* BALANCE */}
+
+//                             <td className="px-4 py-4">
+
+//                               <span className="font-semibold">
+//                                 Rs.{" "}
+//                                 {Number(
+//                                   user.balance || 0
+//                                 ).toLocaleString()}
+//                               </span>
+
+//                             </td>
+
+//                             {/* DELETE */}
+
+//                             <td className="px-4 py-4 text-right">
+
+//                               <Button
+//                                 type="button"
+//                                 variant="destructive"
+//                                 size="sm"
+//                                 disabled={isDeleting}
+//                                 onClick={() =>
+//                                   handleDelete(
+//                                     user._id
+//                                   )
+//                                 }
+//                               >
+
+//                                 {isDeleting ? (
+//                                   <>
+//                                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+
+//                                     Deleting...
+//                                   </>
+//                                 ) : (
+//                                   <>
+//                                     <Trash2 className="mr-2 h-4 w-4" />
+
+//                                     Delete
+//                                   </>
+//                                 )}
+
+//                               </Button>
+
+//                             </td>
+
+//                           </motion.tr>
+//                         );
+//                       }
+//                     )}
+
+//                   </tbody>
+
+//                 </table>
+
+//               </div>
+//             )}
+
+//           </CardContent>
+
+//         </Card>
+//       </motion.div>
+
+//     </div>
+//   );
+// }
+
+
+// /* =============================
+//    STAT CARD
+// ============================= */
+
+// function StatCard({
+//   title,
+//   value,
+//   icon: Icon,
+// }) {
+//   return (
+//     <motion.div
+//       initial={{
+//         opacity: 0,
+//         y: 15,
+//       }}
+//       animate={{
+//         opacity: 1,
+//         y: 0,
+//       }}
+//       whileHover={{
+//         y: -3,
+//       }}
+//     >
+//       <Card>
+
+//         <CardContent className="flex items-center justify-between p-6">
+
+//           <div>
+
+//             <p className="text-sm text-muted-foreground">
+//               {title}
+//             </p>
+
+//             <p className="mt-1 text-2xl font-bold">
+//               {value}
+//             </p>
+
+//           </div>
+
+//           <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-muted">
+
+//             <Icon className="h-5 w-5" />
+
+//           </div>
+
+//         </CardContent>
+
+//       </Card>
+//     </motion.div>
+//   );
+// }
+
+
+
+
+// v4
 "use client";
 
+import { useState } from "react";
 import { motion } from "motion/react";
 
 import {
@@ -1545,6 +2008,9 @@ import {
   Trash2,
   Loader2,
   Mail,
+  Pencil,
+  X,
+  Save,
 } from "lucide-react";
 
 import {
@@ -1569,7 +2035,109 @@ export default function AdminUsersPage() {
     error,
     deletingId,
     deleteUser,
+    updateUser,
   } = useAdminUsers();
+
+  // =========================
+  // EDIT STATE
+  // =========================
+
+  const [editingUser, setEditingUser] = useState(null);
+
+  const [formData, setFormData] = useState({
+    userName: "",
+    email: "",
+    role: "affiliate",
+    newPassword: "",
+  });
+
+  const [updating, setUpdating] = useState(false);
+
+  // =========================
+  // OPEN EDIT
+  // =========================
+
+  const handleEdit = (user) => {
+    setEditingUser(user);
+
+    setFormData({
+      userName: user.userName || "",
+      email: user.email || "",
+      role: user.role || "affiliate",
+      newPassword: "",
+    });
+  };
+
+  // =========================
+  // CLOSE EDIT
+  // =========================
+
+  const handleCloseEdit = () => {
+    if (updating) return;
+
+    setEditingUser(null);
+
+    setFormData({
+      userName: "",
+      email: "",
+      role: "affiliate",
+      newPassword: "",
+    });
+  };
+
+  // =========================
+  // INPUT CHANGE
+  // =========================
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  // =========================
+  // UPDATE USER
+  // =========================
+
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+
+    if (!editingUser) return;
+
+    try {
+      setUpdating(true);
+
+      const updateData = {
+        userName: formData.userName.trim(),
+        email: formData.email.trim(),
+        role: formData.role,
+      };
+
+      // Password sirf tab send karo
+      // jab admin new password enter kare
+      if (formData.newPassword.trim()) {
+        updateData.newPassword =
+          formData.newPassword.trim();
+      }
+
+      await updateUser(
+        editingUser._id,
+        updateData
+      );
+
+      handleCloseEdit();
+    } catch (error) {
+      console.error(
+        "Update user error:",
+        error
+      );
+    } finally {
+      setUpdating(false);
+    }
+  };
 
   // =========================
   // DELETE USER
@@ -1599,11 +2167,13 @@ export default function AdminUsersPage() {
   const totalUsers = users.length;
 
   const adminUsers = users.filter(
-    (user) => user.role === "admin"
+    (user) =>
+      user.role?.toLowerCase() === "admin"
   ).length;
 
   const normalUsers = users.filter(
-    (user) => user.role !== "admin"
+    (user) =>
+      user.role?.toLowerCase() !== "admin"
   ).length;
 
   // =========================
@@ -1744,7 +2314,7 @@ export default function AdminUsersPage() {
 
               <div className="overflow-x-auto">
 
-                <table className="w-full min-w-[700px]">
+                <table className="w-full min-w-[850px]">
 
                   <thead>
                     <tr className="border-b">
@@ -1818,8 +2388,7 @@ export default function AdminUsersPage() {
                                   </p>
 
                                   <p className="max-w-[180px] truncate text-xs text-muted-foreground">
-                                    ID:{" "}
-                                    {user._id}
+                                    ID: {user._id}
                                   </p>
 
                                 </div>
@@ -1849,7 +2418,7 @@ export default function AdminUsersPage() {
 
                             <td className="px-4 py-4">
 
-                              {user.role ===
+                              {user.role?.toLowerCase() ===
                                 "admin" ? (
                                 <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
 
@@ -1877,43 +2446,65 @@ export default function AdminUsersPage() {
                               <span className="font-semibold">
                                 Rs.{" "}
                                 {Number(
-                                  user.balance || 0
+                                  user.balance ?? 0
                                 ).toLocaleString()}
                               </span>
 
                             </td>
 
-                            {/* DELETE */}
+                            {/* ACTION */}
 
-                            <td className="px-4 py-4 text-right">
+                            <td className="px-4 py-4">
 
-                              <Button
-                                type="button"
-                                variant="destructive"
-                                size="sm"
-                                disabled={isDeleting}
-                                onClick={() =>
-                                  handleDelete(
-                                    user._id
-                                  )
-                                }
-                              >
+                              <div className="flex justify-end gap-2">
 
-                                {isDeleting ? (
-                                  <>
-                                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                {/* EDIT */}
 
-                                    Deleting...
-                                  </>
-                                ) : (
-                                  <>
-                                    <Trash2 className="mr-2 h-4 w-4" />
+                                <Button
+                                  type="button"
+                                  variant="outline"
+                                  size="sm"
+                                  onClick={() =>
+                                    handleEdit(user)
+                                  }
+                                  disabled={isDeleting}
+                                >
+                                  <Pencil className="mr-2 h-4 w-4" />
 
-                                    Delete
-                                  </>
-                                )}
+                                  Edit
+                                </Button>
 
-                              </Button>
+                                {/* DELETE */}
+
+                                <Button
+                                  type="button"
+                                  variant="destructive"
+                                  size="sm"
+                                  disabled={isDeleting}
+                                  onClick={() =>
+                                    handleDelete(
+                                      user._id
+                                    )
+                                  }
+                                >
+
+                                  {isDeleting ? (
+                                    <>
+                                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+
+                                      Deleting...
+                                    </>
+                                  ) : (
+                                    <>
+                                      <Trash2 className="mr-2 h-4 w-4" />
+
+                                      Delete
+                                    </>
+                                  )}
+
+                                </Button>
+
+                              </div>
 
                             </td>
 
@@ -1933,6 +2524,186 @@ export default function AdminUsersPage() {
 
         </Card>
       </motion.div>
+
+      {/* =========================
+          EDIT USER MODAL
+      ========================= */}
+
+      {editingUser && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+
+          <motion.div
+            initial={{
+              opacity: 0,
+              scale: 0.95,
+            }}
+            animate={{
+              opacity: 1,
+              scale: 1,
+            }}
+            className="w-full max-w-md rounded-xl border bg-background p-6 shadow-xl"
+          >
+
+            {/* HEADER */}
+
+            <div className="mb-6 flex items-center justify-between">
+
+              <div>
+                <h2 className="text-xl font-semibold">
+                  Edit User
+                </h2>
+
+                <p className="text-sm text-muted-foreground">
+                  Update user account information.
+                </p>
+              </div>
+
+              <Button
+                type="button"
+                variant="ghost"
+                size="icon"
+                onClick={handleCloseEdit}
+                disabled={updating}
+              >
+                <X className="h-5 w-5" />
+              </Button>
+
+            </div>
+
+            {/* FORM */}
+
+            <form
+              onSubmit={handleUpdate}
+              className="space-y-4"
+            >
+
+              {/* USERNAME */}
+
+              <div className="space-y-2">
+
+                <label className="text-sm font-medium">
+                  Username
+                </label>
+
+                <input
+                  type="text"
+                  name="userName"
+                  value={formData.userName}
+                  onChange={handleChange}
+                  required
+                  className="w-full rounded-md border bg-background px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-primary"
+                />
+
+              </div>
+
+              {/* EMAIL */}
+
+              <div className="space-y-2">
+
+                <label className="text-sm font-medium">
+                  Email
+                </label>
+
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  className="w-full rounded-md border bg-background px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-primary"
+                />
+
+              </div>
+
+              {/* ROLE */}
+
+              <div className="space-y-2">
+
+                <label className="text-sm font-medium">
+                  Role
+                </label>
+
+                <select
+                  name="role"
+                  value={formData.role}
+                  onChange={handleChange}
+                  className="w-full rounded-md border bg-background px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-primary"
+                >
+                  <option value="affiliate">
+                    Affiliate
+                  </option>
+
+                  <option value="admin">
+                    Admin
+                  </option>
+                </select>
+
+              </div>
+
+              {/* PASSWORD */}
+
+              <div className="space-y-2">
+
+                <label className="text-sm font-medium">
+                  New Password
+                </label>
+
+                <input
+                  type="password"
+                  name="newPassword"
+                  value={formData.newPassword}
+                  onChange={handleChange}
+                  placeholder="Leave empty to keep current password"
+                  className="w-full rounded-md border bg-background px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-primary"
+                />
+
+                <p className="text-xs text-muted-foreground">
+                  Leave empty if you don't want to change the password.
+                </p>
+
+              </div>
+
+              {/* BUTTONS */}
+
+              <div className="flex justify-end gap-2 pt-2">
+
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={handleCloseEdit}
+                  disabled={updating}
+                >
+                  Cancel
+                </Button>
+
+                <Button
+                  type="submit"
+                  disabled={updating}
+                >
+
+                  {updating ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+
+                      Updating...
+                    </>
+                  ) : (
+                    <>
+                      <Save className="mr-2 h-4 w-4" />
+
+                      Update User
+                    </>
+                  )}
+
+                </Button>
+
+              </div>
+
+            </form>
+
+          </motion.div>
+        </div>
+      )}
 
     </div>
   );
