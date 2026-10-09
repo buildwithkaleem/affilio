@@ -441,7 +441,7 @@ export default function Sidebar({ open, onClose }) {
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const [unreadCount, setUnreadCount] = useState(0);
+  // const [unreadCount, setUnreadCount] = useState(0);
 
 
   // logout
@@ -466,37 +466,37 @@ export default function Sidebar({ open, onClose }) {
   // UNREAD COUNT
   // =========================
 
-  const getUnreadCount = async () => {
-    try {
-      const response = await api.get(
-        "/api/v1/notification/unreadCount"
-      );
+  // const getUnreadCount = async () => {
+  //   try {
+  //     const response = await api.get(
+  //       "/api/v1/notification/unreadCount"
+  //     );
 
-      setUnreadCount(
-        response.data?.data?.count || 0
-      );
-    } catch (error) {
-      console.error(
-        "Failed to fetch unread notification count:",
-        error
-      );
-    }
-  };
+  //     setUnreadCount(
+  //       response.data?.data?.count || 0
+  //     );
+  //   } catch (error) {
+  //     console.error(
+  //       "Failed to fetch unread notification count:",
+  //       error
+  //     );
+  //   }
+  // };
 
   // =========================
   // INITIAL + AUTO REFRESH
   // =========================
 
-  useEffect(() => {
-    getUnreadCount();
+  // useEffect(() => {
+  //   getUnreadCount();
 
-    const interval = setInterval(
-      getUnreadCount,
-      30000
-    );
+  //   const interval = setInterval(
+  //     getUnreadCount,
+  //     30000
+  //   );
 
-    return () => clearInterval(interval);
-  }, []);
+  //   return () => clearInterval(interval);
+  // }, []);
 
   return (
     <>
@@ -600,7 +600,7 @@ export default function Sidebar({ open, onClose }) {
 
                 {/* Notification badge */}
 
-                {isNotification &&
+                {/* {isNotification &&
                   unreadCount > 0 && (
                     <span
                       className={`
@@ -621,7 +621,7 @@ export default function Sidebar({ open, onClose }) {
                         ? "99+"
                         : unreadCount}
                     </span>
-                  )}
+                  )} */}
               </Link>
             );
           })}

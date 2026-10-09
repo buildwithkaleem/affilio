@@ -2,6 +2,7 @@ import AuthInitializer from "@/components/AuthInitializer";
 import "./globals.css";
 import ReduxProvider from "@/redux/Provider";
 import NotificationInitializer from "@/components/NotificationInitializer";
+import ScrollToTop from "@/components/ScrollToTop";
 
 export const metadata = {
   title: "Affilio",
@@ -19,6 +20,7 @@ export default function RootLayout({ children }) {
             </NotificationInitializer>
           </AuthInitializer>
         </ReduxProvider>
+        <ScrollToTop />
       </body>
     </html>
   );
