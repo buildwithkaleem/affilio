@@ -259,7 +259,7 @@ export default function AdminContactPage() {
                           disabled={
                             deletingId === contact._id
                           }
-                          className="inline-flex items-center justify-center rounded-lg border border-red-200 px-3 py-2 text-red-600 transition hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-50"
+                          className="inline-flex cursor-pointer items-center justify-center rounded-lg border border-red-200 px-3 py-2 text-red-600 transition hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-50"
                         >
                           {deletingId === contact._id ? (
                             <Loader2 className="h-4 w-4 animate-spin" />

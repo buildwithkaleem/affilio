@@ -1601,7 +1601,7 @@ try {
                                 )
                               )
                             }
-                            className={`rounded-lg border px-3 py-1.5 text-xs font-medium transition-all hover:border-primary/40 hover:bg-primary/5 ${Number(
+                            className={`rounded-lg cursor-pointer border px-3 py-1.5 text-xs font-medium transition-all hover:border-primary/40 hover:bg-primary/5 ${Number(
                               amount
                             ) ===
                                 quickAmount
@@ -1663,7 +1663,7 @@ try {
                   submitting ||
                   currentBalance < 100
                 }
-                className="h-12 w-full rounded-xl font-semibold"
+                className="h-12 w-full rounded-xl font-semibold cursor-pointer"
               >
                 {submitting ? (
                   <>

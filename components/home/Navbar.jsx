@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { Loader2, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { usePathname } from "next/navigation";
@@ -315,9 +315,9 @@ export default function Navbar() {
 
         {!initialized ? (
           <div className="hidden items-center gap-3 md:flex">
-            <p className="text-sm text-muted-foreground">
-              Loading...
-            </p>
+            {/* <p className="text-sm text-muted-foreground"> */}
+               <Loader2 className="h-4 w-4 animate-spin" />
+            {/* </p> */}
           </div>
         ) : !user ? (
           <div className="hidden items-center gap-3 md:flex">

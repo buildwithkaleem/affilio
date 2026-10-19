@@ -37,7 +37,7 @@ export default function Hero() {
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Link href="/register">
-              <Button size="lg" className="w-full sm:w-auto">
+              <Button size="lg" className="w-full sm:w-auto cursor-pointer">
                 Start Earning
                 <ArrowRight className="ml-2" size={18} />
               </Button>
@@ -47,7 +47,7 @@ export default function Hero() {
               <Button
                 size="lg"
                 variant="outline"
-                className="w-full sm:w-auto"
+                className="w-full sm:w-auto cursor-pointer"
               >
                 Login
               </Button>

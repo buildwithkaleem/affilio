@@ -654,7 +654,7 @@ export default function PaymentMethodPage() {
                               method.value,
                           }))
                         }
-                        className={`group relative flex flex-col items-start rounded-xl border p-4 text-left transition-all duration-200 ${selected
+                        className={`group cursor-pointer relative flex flex-col items-start rounded-xl border p-4 text-left transition-all duration-200 ${selected
                             ? "border-primary bg-primary/[0.06] shadow-sm ring-1 ring-primary/20"
                             : "border-border/70 bg-background hover:border-primary/40 hover:bg-muted/40"
                           }`}
@@ -800,7 +800,7 @@ export default function PaymentMethodPage() {
                 <Button
                   type="submit"
                   disabled={saving}
-                  className="h-11 w-full rounded-xl px-6 sm:w-auto"
+                  className="h-11 w-full rounded-xl px-6 sm:w-auto cursor-pointer"
                 >
                   {saving ? (
                     <>

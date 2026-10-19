@@ -446,6 +446,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { getMe, updateUser } from "@/lib/userApi";
 
 import { setUser } from "@/redux/slices/authSlice";
+import PasswordInput from "@/components/form/PasswordInput";
+import InputField from "@/components/form/InputField";
 
 export default function ProfilePage() {
   const dispatch = useDispatch();
@@ -492,8 +494,8 @@ export default function ProfilePage() {
 
         setError(
           error.response?.data?.message ||
-            error.message ||
-            "Failed to fetch profile"
+          error.message ||
+          "Failed to fetch profile"
         );
       } finally {
         setLoading(false);
@@ -588,7 +590,7 @@ export default function ProfilePage() {
 
       setError(
         error.response?.data?.message ||
-          "Failed to update profile."
+        "Failed to update profile."
       );
     } finally {
       setSaving(false);
@@ -700,7 +702,7 @@ export default function ProfilePage() {
             </p>
           </div>
         </motion.div>
-      )}
+      )} 
 
       {/* =========================
           MAIN CONTENT
@@ -818,7 +820,20 @@ export default function ProfilePage() {
                     {/* USERNAME */}
 
                     <div className="space-y-2">
-                      <label
+
+                      <InputField
+                        label="User Name"
+                        name="userName"
+                        value={form.userName}
+                        onChange={handleChange}
+                        autoComplete="username"
+                        placeholder="Enter UserName "
+                        // error={error}
+                        icon={User}
+                      />
+
+
+                      {/* <label
                         htmlFor="userName"
                         className="text-sm font-medium"
                       >
@@ -836,8 +851,8 @@ export default function ProfilePage() {
                           autoComplete="username"
                           placeholder="Enter username"
                           className="h-12 w-full rounded-xl border bg-background pl-11 pr-4 text-sm outline-none transition-all placeholder:text-muted-foreground/60 focus:border-primary focus:ring-4 focus:ring-primary/10"
-                        />
-                      </div>
+                        /> */}
+                      {/* </div> */}
 
                       <p className="text-xs text-muted-foreground">
                         This name will identify you across the
@@ -848,7 +863,20 @@ export default function ProfilePage() {
                     {/* EMAIL */}
 
                     <div className="space-y-2">
-                      <label
+
+                      <InputField
+                        label="Email Address"
+                        type="email"
+                        name="email"
+                        value={form.email}
+                        onChange={handleChange}
+                        autoComplete="email"
+                        placeholder="Enter email address"
+                        // error={error}
+                        icon={Mail}
+                      />
+
+                      {/* <label
                         htmlFor="email"
                         className="text-sm font-medium"
                       >
@@ -867,8 +895,8 @@ export default function ProfilePage() {
                           autoComplete="email"
                           placeholder="Enter email address"
                           className="h-12 w-full rounded-xl border bg-background pl-11 pr-4 text-sm outline-none transition-all placeholder:text-muted-foreground/60 focus:border-primary focus:ring-4 focus:ring-primary/10"
-                        />
-                      </div>
+                        /> */}
+                      {/* </div> */}
 
                       <p className="text-xs text-muted-foreground">
                         Use an email address you have access to.
@@ -906,8 +934,16 @@ export default function ProfilePage() {
                     <div className="grid gap-5 md:grid-cols-2">
                       {/* CURRENT PASSWORD */}
 
-                      <div className="space-y-2">
-                        <label
+                      <div >
+                        <PasswordInput
+                          label={"Current Password"}
+                          value={form.oldPassword}
+                          onChange={handleChange}
+                          name="oldPassword"
+                          placeholder="Enter current password"
+                          error={error === "Your old password is incorrect" && error}
+                        />
+                        {/* <label
                           htmlFor="oldPassword"
                           className="text-sm font-medium"
                         >
@@ -927,13 +963,23 @@ export default function ProfilePage() {
                             placeholder="Enter current password"
                             className="h-12 w-full rounded-xl border bg-background pl-11 pr-4 text-sm outline-none transition-all placeholder:text-muted-foreground/60 focus:border-primary focus:ring-4 focus:ring-primary/10"
                           />
-                        </div>
+                        </div> */}
                       </div>
 
                       {/* NEW PASSWORD */}
 
                       <div className="space-y-2">
-                        <label
+
+                        <PasswordInput
+                          label={"New Password"}
+                          value={form.newPassword}
+                          onChange={handleChange}
+                          name="newPassword"
+                          placeholder="Enter new password"
+                          error={error === "New password must be at least 6 characters." && error}
+                        />
+
+                        {/* <label
                           htmlFor="newPassword"
                           className="text-sm font-medium"
                         >
@@ -953,10 +999,11 @@ export default function ProfilePage() {
                             placeholder="Enter new password"
                             className="h-12 w-full rounded-xl border bg-background pl-11 pr-4 text-sm outline-none transition-all placeholder:text-muted-foreground/60 focus:border-primary focus:ring-4 focus:ring-primary/10"
                           />
-                        </div>
+                        </div> */}
                       </div>
                     </div>
 
+         
                     <div className="mt-5 flex items-start gap-2 rounded-xl border border-amber-500/15 bg-amber-500/5 p-3.5 text-xs leading-5 text-muted-foreground">
                       <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-amber-600 dark:text-amber-400" />
 
@@ -980,7 +1027,7 @@ export default function ProfilePage() {
                   <Button
                     type="submit"
                     disabled={saving}
-                    className="h-11 w-full gap-2 rounded-xl px-6 shadow-sm sm:w-auto"
+                    className="h-11 w-full gap-2 rounded-xl px-6 shadow-sm sm:w-auto cursor-pointer"
                   >
                     {saving ? (
                       <>

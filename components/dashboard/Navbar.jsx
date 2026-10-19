@@ -1871,7 +1871,7 @@ export default function Navbar({ onMenuClick }) {
             ref={bellButtonRef}
             variant="ghost"
             size="icon"
-            className="relative h-10 w-10 rounded-full"
+            className="relative cursor-pointer h-10 w-10 rounded-full"
             onClick={handleBellClick}
             aria-label={
               safeUnreadCount > 0

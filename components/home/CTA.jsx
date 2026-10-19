@@ -16,7 +16,7 @@ export default function CTA() {
         </p>
 
         <Link href="/register" className="mt-8 inline-block">
-          <Button size="lg">
+          <Button size="lg" className="cursor-pointer">
             Create Free Account
             <ArrowRight className="ml-2" size={18} />
           </Button>

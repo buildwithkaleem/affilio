@@ -194,7 +194,7 @@ export default function RegisterPage() {
                   onClick={() =>
                     setShowPassword(!showPassword)
                   }
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground"
+                  className="absolute cursor-pointer right-3 top-1/2 -translate-y-1/2 text-muted-foreground"
                 >
                   {showPassword ? (
                     <EyeOff size={18} />
@@ -235,7 +235,7 @@ export default function RegisterPage() {
                       !showConfirmPassword
                     )
                   }
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground"
+                  className="absolute cursor-pointer right-3 top-1/2 -translate-y-1/2 text-muted-foreground"
                 >
                   {showConfirmPassword ? (
                     <EyeOff size={18} />
@@ -249,7 +249,7 @@ export default function RegisterPage() {
             <Button
               type="submit"
               disabled={loading}
-              className="h-11 w-full"
+              className="h-11 w-full cursor-pointer"
             >
               {loading
                 ? "Creating account..."

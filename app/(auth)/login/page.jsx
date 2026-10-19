@@ -421,7 +421,7 @@ export default function LoginPage() {
                   }
                   aria-pressed={showPassword}
                   disabled={loading}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 rounded-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary disabled:opacity-50"
+                  className="absolute cursor-pointer right-3 top-1/2 -translate-y-1/2 rounded-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary disabled:opacity-50"
                 >
                   {showPassword ? (
                     <EyeOff size={18} />
@@ -436,7 +436,7 @@ export default function LoginPage() {
             <Button
               type="submit"
               disabled={loading}
-              className="h-11 w-full font-medium"
+              className="h-11 w-full cursor-pointer font-medium"
             >
               {loading ? (
                 <>
